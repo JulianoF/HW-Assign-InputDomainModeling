@@ -27,13 +27,13 @@
     </dependency>
 
     <dependency>
-      <groupId>java-ml</groupId>
-      <artifactId>java-ml</artifactId>
+      <groupId>net.sf.javaml</groupId>
+      <artifactId>javaml</artifactId>
       <version>0.1.7</version>
       <scope>system</scope>
       <systemPath>${project.basedir}/lib/javaml-0.1.7.jar</systemPath>
     </dependency>
-      <dependency>
+    <dependency>
       <groupId>Jama</groupId>
       <artifactId>Jama</artifactId>
       <version>1.0.2</version>
@@ -101,6 +101,14 @@
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
+            <configuration>
+              <archive>
+                <manifest>
+                  <addClasspath>true</addClasspath>
+                  <mainClass>com.juliano.clustering.App</mainClass>
+                </manifest>
+              </archive>
+            </configuration> 
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -110,6 +118,45 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>2.8.2</version>
         </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>java</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <mainClass>com.juliano.clustering.App</mainClass>
+                <classpathScope>compile</classpathScope>
+            </configuration>
+        </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.4</version>
+            <configuration>
+                <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                        <mainClass>com.juliano.clustering.App</mainClass>
+                    </transformer>
+                </transformers>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
       </plugins>
     </pluginManagement>
   </build>
