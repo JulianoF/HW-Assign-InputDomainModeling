@@ -62,7 +62,21 @@ public class App {
         double sapScore5 = saps.score(clusters3);
 
         System.out.println(
-                "\n******************************************************************************************");
+            "\n*******************************************************************************************");
+        for(int i = 0; i < clusters1.length;i++ ){
+            System.out.println(clusters1[i]);
+        }
+        System.out.println("\n");
+        for(int i = 0; i < clusters2.length;i++ ){
+            System.out.println(clusters2[i]);
+        }
+        System.out.println("\n");
+        for(int i = 0; i < clusters3.length;i++ ){
+            System.out.println(clusters3[i]);
+        }
+            
+        System.out.println(
+                "\n*******************************************************************************************");
         System.out.println("KMEAN Cluster count: " + clusters1.length);
         System.out.println("AQBC Cluster count: " + clusters2.length);
         System.out.println("SOM Cluster count: " + clusters3.length + "\n");
